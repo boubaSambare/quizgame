@@ -1,16 +1,13 @@
-function ajaxGet(url, callback) {
-    var request = new XMLHttpRequest()
-    request.open("GET", url);
-    request.addEventListener("load", function () {
-        if (request.status >= 200 && request.status < 400) {
-            
-            callback(request.responseText);
-        } else {
-            console.error(request.status + " " + request.statusText + " " + url);
-        }
-    });
-    request.addEventListener("error", function () {
-        console.error("Erreur réseau avec l'URL " + url);
-    });
-    request.send(null);
+function ajaxGet(url ) {
+        var xmlhttp = new XMLHttpRequest();
+        var reponse = []
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                reponse.push( JSON.parse(xmlhttp.responseText));
+                
+            }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+       return reponse
 }
