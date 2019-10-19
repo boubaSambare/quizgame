@@ -26,7 +26,7 @@ function buildQuestion() {
 
                 containerElm.appendChild(quizContainer)
                 var choiceLabel = document.createElement('div')
-                choiceLabel.innerHTML =  '<input type="radio" name="answer">'+ 'true'
+                choiceLabel.innerHTML =  '<input type="radio" name="answer">'+ questions.results[i].correct_answer
                 quizContainer.appendChild(choiceLabel)
 
                 for (var j = 0; j < questions.results[i].incorrect_answers.length; j++){
