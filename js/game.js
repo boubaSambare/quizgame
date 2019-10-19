@@ -17,7 +17,7 @@ function buildQuestion() {
             console.log(questions.results[i].type)
             if (questions.results[i].type === 'multiple'){
                 var quizContainer = document.createElement('div')
-                quizContainer.id = 'quiz-container'
+                quizContainer.className = 'quiz-container'
             
                 var quizTitle = document.createElement('h3')
                 quizTitle.className = 'quiz quiz' + (i + 1)
@@ -25,23 +25,30 @@ function buildQuestion() {
                 quizContainer.appendChild(quizTitle)
 
                 containerElm.appendChild(quizContainer)
-                var choiceLabel = document.createElement('label')
+                var choiceLabel = document.createElement('div')
+                choiceLabel.innerHTML =  '<input type="radio" name="answer">'+ 'true'
+                quizContainer.appendChild(choiceLabel)
 
                 for (var j = 0; j < questions.results[i].incorrect_answers.length; j++){
                 var choiceContiner = document.createElement('div')
-                choiceContiner.innerHTML = '<p> hello</p>'
+                choiceContiner.innerHTML += '<input type="radio" name="answer">'+ questions.results[i].incorrect_answers[j]
+                quizContainer.appendChild(choiceContiner)
                     
                 } 
 
                 } else if(questions.results[i].type === 'boolean') {
                     var quizContainer = document.createElement('div')
-                    quizContainer.id = 'quiz-container'
+                    quizContainer.className = 'quiz-container'
                 
                     var quizTitle = document.createElement('h3')
                     quizTitle.className = 'quiz quiz' + (i + 1)
                     quizTitle.innerText = questions.results[i].question
                     quizContainer.appendChild(quizTitle)
                     containerElm.appendChild(quizContainer)
+                    var choiceLabel = document.createElement('div')
+                    choiceLabel.innerHTML = '<input type="radio" name="answer-boolean">' + 'true'
+                    choiceLabel.innerHTML += '<input type="radio" name="answer-boolean">' + 'False'
+                    quizContainer.appendChild(choiceLabel)
                 }
             
         }
